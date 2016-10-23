@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>Delete Posts</title>
+		<center><h1>448 Message Board Post Deletion</h1></center>
+	</head>
+	<script type="text/javascript">
+
+	</script>
+	<body>
+		<form action="DeletePost.php" method="post">
+		<center><table>
+			<tr>
+				<th>Posts</th>
+				<th>Author</th>
+				<th>Delete?</th>
+			</tr>
+
+			<?php
+				$mysqli = new mysqli("mysql.eecs.ku.edu", "sfulton", "applebutter", "sfulton");				
+				if ($mysqli->connect_errno) {
+					printf("Connect failed: %s\n", $mysqli->connect_error);
+					exit();
+				}
+			
+				$query = "SELECT * FROM Posts";
+				if ($result = $mysqli->query($query)) {
+					while ($row = $result->fetch_assoc()) {
+						echo "<tr><td><center>".$row["content"]."</center></td>";
+						echo "<td><center>".$row["author_id"]."</center></td>";
+						echo "<td><center><input type='checkbox' name='del_list[]' value='".$row["post_id"]."'></center></td></tr>";
+					
+					}
+					$result->free();
+				}
+
+
+				$mysqli->close();
+			?>
+			</table><br>
+			<input type="submit">
+			</center>
+		</form>
+		<center><a href='AdminHome.html'>Return to Admin Homepage</a></center>
+	</body>
+</html>

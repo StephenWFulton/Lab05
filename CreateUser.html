@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Create User</title>
+    <meta content="">
+    <style></style>
+    <center><h1>448 Message Board</h1></center>
+    <script type="text/javascript">
+        function Validate(){
+            if(document.getElementById("un").value == "")
+            {
+                alert("Invalid! No username input.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+  </head>
+  <body>
+  <center>
+    <form onsubmit="return Validate()" action="CreateUser.php" method="post">
+        <p>Username: </p><input type="text" id="un" name="username"></input><br><br>
+        <input type="submit"></input>
+    </form>
+    <a href="CreatePosts.html">Already a user? Make a post now!</a>
+  </center>
+  </body>
+</html>
